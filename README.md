@@ -1,2 +1,0 @@
-# kickstarter
-GoIT Kickstarter1
