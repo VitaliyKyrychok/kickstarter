@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:database.properties"/>
 
     <!--Data Source-->
     <bean id="dataSourceProvider" class="ua.com.goit.kyrychok.dao.database.datasource_provider.H2DataSourceProvider"
           init-method="init">
-        <property name="url"
-                  value="jdbc:h2:G:\Software\apache-tomcat-8.0.24\webapps\xxx\WEB-INF\classes\database\kickstarter.db"/>
-        <property name="userName" value="sa"/>
-        <property name="userPassword" value=""/>
+        <property name="url" value="${url}"/>
+        <property name="userName" value="${user}"/>
+        <property name="userPassword" value="${password}"/>
     </bean>
 
     <!--SQL Providers-->

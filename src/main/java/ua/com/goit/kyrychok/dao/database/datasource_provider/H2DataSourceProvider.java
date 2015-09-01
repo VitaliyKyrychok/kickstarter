@@ -12,7 +12,8 @@ public class H2DataSourceProvider implements DbDataSourceProvider {
     private String userPassword;
 
     public void setUrl(String url) {
-        this.url = url;
+        //TODO Configure this
+        this.url = "jdbc:h2:file:G:\\Software\\apache-tomcat-8.0.24\\webapps\\xxx\\WEB-INF\\classes\\database\\kickstarter.db;IFEXISTS=TRUE";
     }
 
     public void setUserName(String userName) {
@@ -56,6 +57,7 @@ public class H2DataSourceProvider implements DbDataSourceProvider {
         dataSource.setURL(url);
         dataSource.setUser(userName);
         dataSource.setPassword(userPassword);
+        System.out.println("url=" + dataSource.getUrl());
         testConnection();
     }
 }

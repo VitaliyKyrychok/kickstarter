@@ -1,41 +1,22 @@
 package ua.com.goit.kyrychok;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import ua.com.goit.kyrychok.controller.CategoryController;
 import ua.com.goit.kyrychok.controller.ProjectController;
 import ua.com.goit.kyrychok.controller.RewardController;
-import ua.com.goit.kyrychok.dao.database.datasource_provider.DbDataSourceProvider;
-import ua.com.goit.kyrychok.dao.database.datasource_provider.H2DataSourceProvider;
-import ua.com.goit.kyrychok.dao.database.factory.H2SqlProviderFactory;
-import ua.com.goit.kyrychok.dao.factory.DbDaoFactory;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Date;
 
 public class MainServlet extends HttpServlet {
     private CategoryController categoryController;
     private ProjectController projectController;
     private RewardController rewardController;
-
-    private DbDataSourceProvider createDataSourceProvider(String url) {
-        DbDataSourceProvider result = new H2DataSourceProvider();
-        try {
-            result.init("jdbc:h2:" + url, "sa", "");
-        } catch (SQLException e) {
-            throw new RuntimeException("Can't connect to database", e);
-        }
-        try {
-            result.testConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException("Test connection fail", e);
-        }
-        return result;
-    }
 
     private String getAction(HttpServletRequest req) {
         String result;
@@ -47,13 +28,11 @@ public class MainServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        ServletContext context = getServletContext();
-        String url = context.getRealPath("/WEB-INF/classes/database/kickstarter.db");
-        DbDataSourceProvider dataSourceProvider = createDataSourceProvider(url);
-        DbDaoFactory daoFactory = new DbDaoFactory(dataSourceProvider, new H2SqlProviderFactory());
-        categoryController = new CategoryController(daoFactory.createCategory());
-        projectController = new ProjectController(daoFactory.createProject(), daoFactory.createReward());
-        rewardController = new RewardController(daoFactory.createReward());
+        ApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(
+                this.getServletContext());
+        categoryController = (CategoryController) context.getBean("categoryController");
+        projectController = (ProjectController) context.getBean("projectController");
+        rewardController = (RewardController) context.getBean("rewardController");
     }
 
     @Override
