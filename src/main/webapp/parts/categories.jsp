@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<div class="small-nav">
+    <a href="kickstarter">Kickstarter</a>
+</div>
 <div id="main">
     <div class="cl">&nbsp;</div>
     <div id="content">

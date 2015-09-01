@@ -27,4 +27,9 @@ public class H2CategorySqlProvider implements CategorySqlProvider {
         return "insert into category(name) values (?)";
     }
 
+    @Override
+    public String get4GetByProjectId() {
+        return "SELECT p.category_id AS category_name FROM project p WHERE p.project_id = ?";
+    }
+
 }

@@ -57,12 +57,14 @@ public class MainServlet extends HttpServlet {
         } else if (action.startsWith("/project")) {
             int projectId = Integer.parseInt(req.getParameter("id"));
             req.setAttribute("activeProjects", "active");
+            req.setAttribute("category", categoryController.getByProjectId(projectId));
             req.setAttribute("project", projectController.get(projectId));
             req.setAttribute("rewards", rewardController.fetch(projectId));
             req.setAttribute("container", "parts/project.jsp");
         } else if (action.startsWith("/donate")) {
             int projectId = Integer.parseInt(req.getParameter("projectId"));
             req.setAttribute("activeProjects", "active");
+            req.setAttribute("category", categoryController.getByProjectId(projectId));
             req.setAttribute("project", projectController.get(projectId));
             String rewardParametr = req.getParameter("rewardId");
             if (rewardParametr != null) {

@@ -54,18 +54,24 @@ public class DbCategoryDao implements CategoryDao {
         return result;
     }
 
+    public Category get(int id, Connection connection) throws SQLException {
+        Category result = null;
+        try (PreparedStatement statement = connection.prepareStatement(sqlProvider.get4Get())) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                result = new Category(resultSet.getString("category_name"));
+                result.setId(id);
+            }
+        }
+        return result;
+    }
+
     @Override
     public Category get(int id) {
         Category result = null;
         try (Connection connection = dbDataSourceProvider.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(sqlProvider.get4Get())) {
-                statement.setInt(1, id);
-                ResultSet resultSet = statement.executeQuery();
-                if (resultSet.next()) {
-                    result = new Category(resultSet.getString("category_name"));
-                    result.setId(id);
-                }
-            }
+            result = get(id, connection);
             connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -74,23 +80,24 @@ public class DbCategoryDao implements CategoryDao {
     }
 
     @Override
-    public void add(Category category) {
+    public Category getByProjectId(int id) {
+        Category result = null;
         try (Connection connection = dbDataSourceProvider.getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(sqlProvider.get4Add(), new String[]{"category_id"})) {
-                statement.setString(1, category.getName());
-                statement.executeUpdate();
-                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        category.setId(generatedKeys.getInt(1));
-                    } else {
-                        throw new SQLException("Can't receive category ID.");
-                    }
+            int categoryId = 0;
+            try (PreparedStatement statement = connection.prepareStatement(sqlProvider.get4GetByProjectId())) {
+                statement.setInt(1, id);
+                ResultSet resultSet = statement.executeQuery();
+                if (resultSet.next()) {
+                    categoryId = resultSet.getInt("category_id");
                 }
             }
-            dbProjectDao.addList(category.getId(), category.getProjects(), connection);
+            result = get(categoryId, connection);
             connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return result;
     }
+
+
 }

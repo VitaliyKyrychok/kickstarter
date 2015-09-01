@@ -13,6 +13,7 @@ public class H2DataSourceProvider implements DbDataSourceProvider {
 
     public void setUrl(String url) {
         //TODO Configure this
+        //this.url = "jdbc:h2:file:" + url + ";IFEXISTS=TRUE";
         this.url = "jdbc:h2:file:G:\\Software\\apache-tomcat-8.0.24\\webapps\\xxx\\WEB-INF\\classes\\database\\kickstarter.db;IFEXISTS=TRUE";
     }
 

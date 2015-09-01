@@ -23,4 +23,8 @@ public class CategoryController {
     public Category get(int id) {
         return categoryDao.get(id);
     }
+
+    public Category getByProjectId(int id) {
+        return categoryDao.getByProjectId(id);
+    }
 }

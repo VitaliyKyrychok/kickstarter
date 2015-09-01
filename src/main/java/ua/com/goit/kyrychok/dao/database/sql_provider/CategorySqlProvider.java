@@ -10,4 +10,6 @@ public interface CategorySqlProvider {
     String get4Get();
 
     String get4Add();
+
+    String get4GetByProjectId();
 }
