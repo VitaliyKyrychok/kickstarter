@@ -4,8 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--Data Source-->
-    <bean id="dataSourceProvider" class="ua.com.goit.kyrychok.dao.database.datasource_provider.H2DataSourceProvider" init-method="init">
-        <property name="url" value="jdbc:h2:G:\Software\apache-tomcat-8.0.24\webapps\xxx\WEB-INF\classes\database\kickstarter.db"/>
+    <bean id="dataSourceProvider" class="ua.com.goit.kyrychok.dao.database.datasource_provider.H2DataSourceProvider"
+          init-method="init">
+        <property name="url"
+                  value="jdbc:h2:G:\Software\apache-tomcat-8.0.24\webapps\xxx\WEB-INF\classes\database\kickstarter.db"/>
         <property name="userName" value="sa"/>
         <property name="userPassword" value=""/>
     </bean>
@@ -14,7 +16,8 @@
     <bean id="rewardSqlProvider" class="ua.com.goit.kyrychok.dao.database.sql_provider.H2RewardSqlProvider"/>
     <bean id="categorySqlProvider" class="ua.com.goit.kyrychok.dao.database.sql_provider.H2CategorySqlProvider"/>
     <bean id="faqSqlProvider" class="ua.com.goit.kyrychok.dao.database.sql_provider.H2FaqSqlProvider"/>
-    <bean id="projectEventSqlProvider" class="ua.com.goit.kyrychok.dao.database.sql_provider.H2ProjectEventSqlProvider"/>
+    <bean id="projectEventSqlProvider"
+          class="ua.com.goit.kyrychok.dao.database.sql_provider.H2ProjectEventSqlProvider"/>
     <bean id="projectSqlProvider" class="ua.com.goit.kyrychok.dao.database.sql_provider.H2ProjectSqlProvider"/>
 
     <!--DAO-->

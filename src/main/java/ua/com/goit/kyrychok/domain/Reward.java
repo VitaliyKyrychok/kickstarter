@@ -28,7 +28,7 @@ public class Reward {
         return description;
     }
 
-    public String getMoney(){
+    public String getMoney() {
         return Utils.getMoney(getAmount());
     }
 }

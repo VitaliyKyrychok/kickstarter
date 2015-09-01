@@ -125,15 +125,15 @@ public class Project {
         rewards.add(reward);
     }
 
-    public String getBalanceAsString(){
+    public String getBalanceAsString() {
         return Utils.getMoney(getBalance());
     }
 
-    public String getGoalAsString(){
+    public String getGoalAsString() {
         return Utils.getMoney(getGoal());
     }
 
-    public String getTimeLeft(){
+    public String getTimeLeft() {
         return Utils.getDiffDate(getDeadlineDate(), new Date());
     }
 
