@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<c:set var="root" value="G:\\GoJava\\svn\\kickstarter\\kickstarter2\\src\\main\\webapp\\"/>--%>
-<%--<c:set var="root" value="${pageContext.request.contextPath}/"/>--%>
-<%--<c:set var="root" value="http://localhost:8080/xxx/"/>--%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Kickstarter</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 </head>
 <body>
-<%--<style media="screen" type="text/css">--%>
-<%--<%@include file="css/style.css"%>--%>
-<%--</style>--%>
 <div id="header">
     <div class="shell">
         <div id="top">

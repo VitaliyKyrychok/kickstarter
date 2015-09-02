@@ -1,6 +1,7 @@
 package ua.com.goit.kyrychok.dao.database;
 
 import ua.com.goit.kyrychok.dao.ProjectEventDao;
+import ua.com.goit.kyrychok.dao.database.datasource_provider.DbDataSourceProvider;
 import ua.com.goit.kyrychok.dao.database.sql_provider.ProjectEventSqlProvider;
 import ua.com.goit.kyrychok.domain.ProjectEvent;
 
@@ -9,9 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DbProjectEventDao implements ProjectEventDao {
+    private DbDataSourceProvider dataSourceProvider;
     private ProjectEventSqlProvider sqlProvider;
 
-    public DbProjectEventDao(ProjectEventSqlProvider sqlProvider) {
+    public DbProjectEventDao(DbDataSourceProvider dbDataSourceProvider, ProjectEventSqlProvider sqlProvider) {
+        this.dataSourceProvider = dbDataSourceProvider;
         this.sqlProvider = sqlProvider;
     }
 
@@ -25,6 +28,18 @@ public class DbProjectEventDao implements ProjectEventDao {
                 projectEvent.setId(resultSet.getInt("id"));
                 result.add(projectEvent);
             }
+        }
+        return result;
+    }
+
+    @Override
+    public List<ProjectEvent> fetch(int projectId) {
+        List<ProjectEvent> result = new ArrayList<>();
+        try (Connection connection = dataSourceProvider.getConnection()) {
+            result = fetch(projectId, connection);
+            connection.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return result;
     }

@@ -32,6 +32,7 @@
         <constructor-arg name="sqlProvider" ref="faqSqlProvider"/>
     </bean>
     <bean id="projectEventDao" class="ua.com.goit.kyrychok.dao.database.DbProjectEventDao">
+        <constructor-arg name="dbDataSourceProvider" ref="dataSourceProvider"/>
         <constructor-arg name="sqlProvider" ref="projectEventSqlProvider"/>
     </bean>
     <bean id="projectDao" class="ua.com.goit.kyrychok.dao.database.DbProjectDao">
@@ -57,5 +58,11 @@
     </bean>
     <bean id="rewardController" class="ua.com.goit.kyrychok.controller.RewardController">
         <constructor-arg name="rewardDao" ref="rewardDao"/>
+    </bean>
+    <bean id="projectEventController" class="ua.com.goit.kyrychok.controller.ProjectEventController">
+        <constructor-arg name="projectEventDao" ref="projectEventDao"/>
+    </bean>
+    <bean id="faqController" class="ua.com.goit.kyrychok.controller.FaqController">
+        <constructor-arg name="faqDao" ref="faqDao"/>
     </bean>
 </beans>

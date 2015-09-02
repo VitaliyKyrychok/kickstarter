@@ -2,9 +2,7 @@ package ua.com.goit.kyrychok;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-import ua.com.goit.kyrychok.controller.CategoryController;
-import ua.com.goit.kyrychok.controller.ProjectController;
-import ua.com.goit.kyrychok.controller.RewardController;
+import ua.com.goit.kyrychok.controller.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +15,8 @@ public class MainServlet extends HttpServlet {
     private CategoryController categoryController;
     private ProjectController projectController;
     private RewardController rewardController;
+    private ProjectEventController projectEventController;
+    private FaqController faqController;
 
     private String getAction(HttpServletRequest req) {
         String result;
@@ -33,6 +33,8 @@ public class MainServlet extends HttpServlet {
         categoryController = (CategoryController) context.getBean("categoryController");
         projectController = (ProjectController) context.getBean("projectController");
         rewardController = (RewardController) context.getBean("rewardController");
+        projectEventController = (ProjectEventController) context.getBean("projectEventController");
+        faqController = (FaqController) context.getBean("faqController");
     }
 
     @Override
@@ -60,6 +62,12 @@ public class MainServlet extends HttpServlet {
             req.setAttribute("category", categoryController.getByProjectId(projectId));
             req.setAttribute("project", projectController.get(projectId));
             req.setAttribute("rewards", rewardController.fetch(projectId));
+            String viewMode = req.getParameter("viewMode");
+            if ("history".equals(viewMode)) {
+                req.setAttribute("projectEvents", projectEventController.fetch(projectId));
+            } else if ("comments".equals(viewMode)) {
+                req.setAttribute("faqs", faqController.fetch(projectId));
+            }
             req.setAttribute("container", "parts/project.jsp");
         } else if (action.startsWith("/donate")) {
             int projectId = Integer.parseInt(req.getParameter("projectId"));
@@ -80,11 +88,16 @@ public class MainServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = getAction(req);
         System.out.println(action);
+        String additionalParams = "";
         if (action.startsWith("/donate")) {
             int projectId = Integer.parseInt(req.getParameter("projectId"));
             projectController.doDonate(projectId, req.getParameter("rewardId"), req.getParameter("userName"),
                     req.getParameter("cardNumber"), req.getParameter("pledge"));
+        } else if (action.startsWith("/faq")) {
+            int projectId = Integer.parseInt(req.getParameter("projectId"));
+            faqController.addFaq(projectId, req.getParameter("question"));
+            additionalParams = "&viewMode=comments";
         }
-        resp.sendRedirect("project?id=" + req.getParameter("projectId"));
+        resp.sendRedirect("project?id=" + req.getParameter("projectId") + additionalParams);
     }
 }

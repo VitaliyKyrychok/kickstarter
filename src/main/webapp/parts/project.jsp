@@ -37,6 +37,18 @@
                 </tbody>
             </table>
         </div>
+        <div class="cl">&nbsp;</div>
+        <div id="buttons">
+            <a href="project?id=${project.id}&viewMode=history" class="add-button"><span>History</span></a>
+            <a href="project?id=${project.id}&viewMode=comments" class="add-button"><span>Comments</span></a>
+        </div>
+        <div class="cl">&nbsp;</div>
+        <c:if test="${not empty projectEvents}">
+            <%@include file="history.jsp" %>
+        </c:if>
+        <c:if test="${not empty faqs}">
+            <%@include file="faqs.jsp" %>
+        </c:if>
     </div>
     <%@include file="rewards.jsp" %>
     <div class="cl">&nbsp;</div>

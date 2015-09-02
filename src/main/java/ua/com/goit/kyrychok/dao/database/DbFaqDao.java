@@ -45,6 +45,18 @@ public class DbFaqDao implements FaqDao {
         return result;
     }
 
+    @Override
+    public List<Faq> fetch(int projectId) {
+        List<Faq> result = new ArrayList<>();
+        try (Connection connection = dbDataSourceProvider.getConnection()) {
+            result = fetch(projectId, connection);
+            connection.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
     void add(int projectId, Faq faq, Connection connection) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(sqlProvider.get4Add(), new String[]{"faq_id"})) {
             statement.setString(1, faq.getQuestion());

@@ -10,6 +10,6 @@ public class H2FaqSqlProvider implements FaqSqlProvider {
     @Override
     public String get4Fetch() {
         return "SELECT f.faq_id AS id, f.question AS question, f.answer AS answer " +
-                "FROM faq f WHERE f.project_id = ? ORDER BY f.faq_id";
+                "FROM faq f WHERE f.project_id = ? ORDER BY f.faq_id desc";
     }
 }
