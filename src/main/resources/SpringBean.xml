@@ -37,14 +37,10 @@
     </bean>
     <bean id="projectDao" class="ua.com.goit.kyrychok.dao.database.DbProjectDao">
         <constructor-arg name="dbDataSourceProvider" ref="dataSourceProvider"/>
-        <constructor-arg name="dbFaqDao" ref="faqDao"/>
-        <constructor-arg name="dbRewardDao" ref="rewardDao"/>
-        <constructor-arg name="dbProjectEventDao" ref="projectEventDao"/>
         <constructor-arg name="sqlProvider" ref="projectSqlProvider"/>
     </bean>
     <bean id="categoryDao" class="ua.com.goit.kyrychok.dao.database.DbCategoryDao">
         <constructor-arg name="dbDataSourceProvider" ref="dataSourceProvider"/>
-        <constructor-arg name="dbProjectDao" ref="projectDao"/>
         <constructor-arg name="sqlProvider" ref="categorySqlProvider"/>
     </bean>
 

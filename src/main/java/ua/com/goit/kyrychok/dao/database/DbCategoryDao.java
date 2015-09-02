@@ -11,12 +11,10 @@ import java.util.List;
 
 public class DbCategoryDao implements CategoryDao {
     private DbDataSourceProvider dbDataSourceProvider;
-    private DbProjectDao dbProjectDao;
     private CategorySqlProvider sqlProvider;
 
-    public DbCategoryDao(DbDataSourceProvider dbDataSourceProvider, DbProjectDao dbProjectDao, CategorySqlProvider sqlProvider) {
+    public DbCategoryDao(DbDataSourceProvider dbDataSourceProvider, CategorySqlProvider sqlProvider) {
         this.dbDataSourceProvider = dbDataSourceProvider;
-        this.dbProjectDao = dbProjectDao;
         this.sqlProvider = sqlProvider;
     }
 

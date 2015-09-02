@@ -66,26 +66,4 @@ public class DbRewardDao implements RewardDao {
         }
         return result;
     }
-
-    void add(int projectId, Reward reward, Connection connection) throws SQLException {
-        try (PreparedStatement statement = connection.prepareStatement(sqlProvider.get4Add(), new String[]{"reward_id"})) {
-            statement.setInt(1, reward.getAmount());
-            statement.setString(2, reward.getDescription());
-            statement.setInt(3, projectId);
-            statement.executeUpdate();
-            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    reward.setId(generatedKeys.getInt(1));
-                } else {
-                    throw new SQLException("Can't receive reward ID.");
-                }
-            }
-        }
-    }
-
-    void addList(int projectId, List<Reward> rewards, Connection connection) throws SQLException {
-        for (Reward reward : rewards) {
-            add(projectId, reward, connection);
-        }
-    }
 }

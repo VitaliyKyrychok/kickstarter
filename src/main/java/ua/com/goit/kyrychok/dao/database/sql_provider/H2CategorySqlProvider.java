@@ -8,11 +8,6 @@ public class H2CategorySqlProvider implements CategorySqlProvider {
     }
 
     @Override
-    public String get4AddWelcomeMessage() {
-        return "insert into message(text) values(?)";
-    }
-
-    @Override
     public String get4Fetch() {
         return "SELECT c.category_id AS id, c.name AS NAME FROM category c ORDER BY c.name";
     }

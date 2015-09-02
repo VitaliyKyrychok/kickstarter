@@ -73,9 +73,4 @@ public class DbFaqDao implements FaqDao {
         }
     }
 
-    void addList(int projectId, List<Faq> faqs, Connection connection) throws SQLException {
-        for (Faq faq : faqs) {
-            add(projectId, faq, connection);
-        }
-    }
 }

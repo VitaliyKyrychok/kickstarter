@@ -5,23 +5,20 @@ import ua.com.goit.kyrychok.dao.database.datasource_provider.DbDataSourceProvide
 import ua.com.goit.kyrychok.dao.database.sql_provider.ProjectSqlProvider;
 import ua.com.goit.kyrychok.domain.Project;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DbProjectDao implements ProjectDao {
     private DbDataSourceProvider dbDataSourceProvider;
-    private DbFaqDao dbFaqDao;
-    private DbRewardDao dbRewardDao;
-    private DbProjectEventDao dbProjectEventDao;
     private ProjectSqlProvider sqlProvider;
 
-    public DbProjectDao(DbDataSourceProvider dbDataSourceProvider, DbFaqDao dbFaqDao, DbRewardDao dbRewardDao, DbProjectEventDao dbProjectEventDao, ProjectSqlProvider sqlProvider) {
+    public DbProjectDao(DbDataSourceProvider dbDataSourceProvider, ProjectSqlProvider sqlProvider) {
         this.dbDataSourceProvider = dbDataSourceProvider;
-        this.dbFaqDao = dbFaqDao;
         this.sqlProvider = sqlProvider;
-        this.dbRewardDao = dbRewardDao;
-        this.dbProjectEventDao = dbProjectEventDao;
     }
 
     @Override
@@ -117,34 +114,5 @@ public class DbProjectDao implements ProjectDao {
             throw new RuntimeException(e);
         }
         return result;
-    }
-
-    void add(int category_id, Project project, Connection connection) throws SQLException {
-        try (PreparedStatement statement = connection.prepareStatement(sqlProvider.get4Add(), new String[]{"project_id"})) {
-            statement.setString(1, project.getName());
-            statement.setString(2, project.getShortDescription());
-            statement.setInt(3, project.getGoal());
-            statement.setInt(4, project.getBalance());
-            statement.setDate(5, (Date) project.getDeadlineDate());
-            statement.setString(6, project.getDemoLink());
-            statement.setDate(7, (Date) project.getDeadlineDate());
-            statement.setInt(8, category_id);
-            statement.executeUpdate();
-            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    project.setId(generatedKeys.getInt(1));
-                } else {
-                    throw new SQLException("Can't receive project ID.");
-                }
-            }
-        }
-        dbFaqDao.addList(project.getId(), project.getFaqs(), connection);
-        dbRewardDao.addList(project.getId(), project.getRewards(), connection);
-    }
-
-    void addList(int category_id, List<Project> projects, Connection connection) throws SQLException {
-        for (Project project : projects) {
-            add(category_id, project, connection);
-        }
     }
 }

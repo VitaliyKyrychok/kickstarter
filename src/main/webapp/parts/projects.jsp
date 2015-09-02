@@ -9,6 +9,7 @@
         <div class="box">
             <div class="box-head">
                 <h2 class="left">Projects</h2>
+
                 <div class="right">
                     <label>search articles</label>
                     <input type="text" class="field small-field">

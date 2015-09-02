@@ -5,7 +5,10 @@ import ua.com.goit.kyrychok.dao.database.datasource_provider.DbDataSourceProvide
 import ua.com.goit.kyrychok.dao.database.sql_provider.ProjectEventSqlProvider;
 import ua.com.goit.kyrychok.domain.ProjectEvent;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,27 +46,4 @@ public class DbProjectEventDao implements ProjectEventDao {
         }
         return result;
     }
-
-    void add(int projectId, ProjectEvent projectEvent, Connection connection) throws SQLException {
-        try (PreparedStatement statement = connection.prepareStatement(sqlProvider.get4Add(), new String[]{"project_event_id"})) {
-            statement.setDate(1, (Date) projectEvent.getEventDate());
-            statement.setString(2, projectEvent.getMessage());
-            statement.setInt(3, projectId);
-            statement.executeUpdate();
-            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    projectEvent.setId(generatedKeys.getInt(1));
-                } else {
-                    throw new SQLException("Can't receive project event ID.");
-                }
-            }
-        }
-    }
-
-    void addList(int projectId, List<ProjectEvent> projectEvents, Connection connection) throws SQLException {
-        for (ProjectEvent projectEvent : projectEvents) {
-            add(projectId, projectEvent, connection);
-        }
-    }
-
 }
