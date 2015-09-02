@@ -259,3 +259,127 @@ Caused by: org.h2.jdbc.JdbcSQLException: Незакрытое приложени
 The connection was not closed by the application and is garbage collected [90018-176]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
 	... 14 more
+09-02 04:36:54 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Ошибка преобразования данных при конвертации "'' (PROJECT: PROJECT_ID BIGINT DEFAULT (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142) NOT NULL NULL_TO_DEFAULT SEQUENCE PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142)"
+Data conversion error converting "'' (PROJECT: PROJECT_ID BIGINT DEFAULT (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142) NOT NULL NULL_TO_DEFAULT SEQUENCE PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142)"; SQL statement:
+INSERT INTO "PUBLIC"."PROJECT"("PROJECT_ID","NAME","DESCRIPTION","GOAL","BALANCE","CREATE_DATE","DEADLINE_DATE","DEMO_LINK","CATEGORY_ID")VALUES(?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9) [22018-176]
+09-02 04:36:54 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Ошибка преобразования данных при конвертации "'' (PROJECT: PROJECT_ID BIGINT DEFAULT (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142) NOT NULL NULL_TO_DEFAULT SEQUENCE PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142)"
+Data conversion error converting "'' (PROJECT: PROJECT_ID BIGINT DEFAULT (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142) NOT NULL NULL_TO_DEFAULT SEQUENCE PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142)"; SQL statement:
+INSERT INTO "PUBLIC"."PROJECT"("PROJECT_ID","NAME","DESCRIPTION","GOAL","BALANCE","CREATE_DATE","DEADLINE_DATE","DEMO_LINK","CATEGORY_ID")VALUES(?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9) [22018-176]
+09-02 04:37:59 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Ошибка преобразования данных при конвертации "'' (PROJECT: PROJECT_ID BIGINT DEFAULT (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142) NOT NULL NULL_TO_DEFAULT SEQUENCE PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142)"
+Data conversion error converting "'' (PROJECT: PROJECT_ID BIGINT DEFAULT (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142) NOT NULL NULL_TO_DEFAULT SEQUENCE PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142)"; SQL statement:
+INSERT INTO "PUBLIC"."PROJECT"("PROJECT_ID","NAME","DESCRIPTION","GOAL","BALANCE","CREATE_DATE","DEADLINE_DATE","DEMO_LINK","CATEGORY_ID")VALUES(?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9) [22018-176]
+09-02 04:37:59 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Ошибка преобразования данных при конвертации "'' (PROJECT: PROJECT_ID BIGINT DEFAULT (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142) NOT NULL NULL_TO_DEFAULT SEQUENCE PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142)"
+Data conversion error converting "'' (PROJECT: PROJECT_ID BIGINT DEFAULT (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142) NOT NULL NULL_TO_DEFAULT SEQUENCE PUBLIC.SYSTEM_SEQUENCE_1C82A01B_111F_4A01_9313_9881C2A92142)"; SQL statement:
+INSERT INTO "PUBLIC"."PROJECT"("PROJECT_ID","NAME","DESCRIPTION","GOAL","BALANCE","CREATE_DATE","DEADLINE_DATE","DEMO_LINK","CATEGORY_ID")VALUES(?,?,?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9) [22018-176]
+09-02 04:40:51 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "Project1 in category2" не найден
+Column "Project1 in category2" not found; SQL statement:
+insert into project(name, description, goal, balance, create_date, deadline_date, category_id) 
+values("Project1 in category2", "desc 1 2", 100, 1000, "2015-07-15", "2015-08-30", 2) [42122-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:148)
+	at org.h2.command.dml.Insert.prepare(Insert.java:271)
+	at org.h2.command.Parser.prepareCommand(Parser.java:248)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:172)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:160)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1391)
+	at org.h2.server.web.WebApp.query(WebApp.java:1064)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1026)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1013)
+	at org.h2.server.web.WebThread.process(WebThread.java:168)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+09-02 04:41:18 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "Project1 in category2" не найден
+Column "Project1 in category2" not found; SQL statement:
+insert into project(name, description, goal, balance, create_date, deadline_date, category_id)  values("Project1 in category2", "desc 1 2", 100, 1000, "2015-07-15", "2015-08-30", 2) [42122-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:148)
+	at org.h2.command.dml.Insert.prepare(Insert.java:271)
+	at org.h2.command.Parser.prepareCommand(Parser.java:248)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:172)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:160)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1391)
+	at org.h2.server.web.WebApp.query(WebApp.java:1064)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1026)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1013)
+	at org.h2.server.web.WebThread.process(WebThread.java:168)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+09-02 04:42:05 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "INSERT INTO PROJECT (NAME, DESCRIPTION, GOAL, BALANCE, CREATE_DATE, DEADLINE_DATE, CATEGORY_ID)  PROJECT[*] VALUES(""Project1 in category2"", ""desc 1 2"", 100, 1000, ""2015-07-15"", ""2015-08-30"", 2) "; ожидалось "DIRECT, SORTED, DEFAULT, VALUES, SET, (, SELECT, FROM"
+Syntax error in SQL statement "INSERT INTO PROJECT (NAME, DESCRIPTION, GOAL, BALANCE, CREATE_DATE, DEADLINE_DATE, CATEGORY_ID)  PROJECT[*] VALUES(""Project1 in category2"", ""desc 1 2"", 100, 1000, ""2015-07-15"", ""2015-08-30"", 2) "; expected "DIRECT, SORTED, DEFAULT, VALUES, SET, (, SELECT, FROM"; SQL statement:
+insert into project (name, description, goal, balance, create_date, deadline_date, category_id)  PROJECT values("Project1 in category2", "desc 1 2", 100, 1000, "2015-07-15", "2015-08-30", 2) [42001-176]
+09-02 04:42:22 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Столбец "Project1 in category2" не найден
+Column "Project1 in category2" not found; SQL statement:
+insert into project (name, description, goal, balance, create_date, deadline_date, category_id)  values("Project1 in category2", "desc 1 2", 100, 1000, "2015-07-15", "2015-08-30", 2) [42122-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:148)
+	at org.h2.command.dml.Insert.prepare(Insert.java:271)
+	at org.h2.command.Parser.prepareCommand(Parser.java:248)
+	at org.h2.engine.Session.prepareLocal(Session.java:442)
+	at org.h2.engine.Session.prepareCommand(Session.java:384)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:172)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:160)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1391)
+	at org.h2.server.web.WebApp.query(WebApp.java:1064)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1026)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1013)
+	at org.h2.server.web.WebThread.process(WebThread.java:168)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+09-02 04:42:40 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Синтаксическая ошибка в выражении SQL "INSERT INTO PROJECT (NAME, DESCRIPTION, GOAL, BALANCE, CREATE_DATE, DEADLINE_DATE, CATEGORY_ID)  VALUE[*](""Project1 in category2"", ""desc 1 2"", 100, 1000, ""2015-07-15"", ""2015-08-30"", 2) "; ожидалось "DIRECT, SORTED, DEFAULT, VALUES, SET, (, SELECT, FROM"
+Syntax error in SQL statement "INSERT INTO PROJECT (NAME, DESCRIPTION, GOAL, BALANCE, CREATE_DATE, DEADLINE_DATE, CATEGORY_ID)  VALUE[*](""Project1 in category2"", ""desc 1 2"", 100, 1000, ""2015-07-15"", ""2015-08-30"", 2) "; expected "DIRECT, SORTED, DEFAULT, VALUES, SET, (, SELECT, FROM"; SQL statement:
+insert into project (name, description, goal, balance, create_date, deadline_date, category_id)  value("Project1 in category2", "desc 1 2", 100, 1000, "2015-07-15", "2015-08-30", 2) [42001-176]
+09-02 04:46:26 jdbc[6]: java.lang.Exception: Open Stack Trace
+	at org.h2.util.CloseWatcher.register(CloseWatcher.java:101)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:119)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:74)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:684)
+	at org.h2.server.web.WebApp.login(WebApp.java:958)
+	at org.h2.server.web.WebApp.process(WebApp.java:212)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:171)
+	at org.h2.server.web.WebThread.process(WebThread.java:138)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+
+org.h2.message.DbException: Незакрытое приложением соединение уничтожено сборщиком мусора
+The connection was not closed by the application and is garbage collected [90018-176]
+	at org.h2.message.DbException.get(DbException.java:178)
+	at org.h2.message.DbException.get(DbException.java:154)
+	at org.h2.message.DbException.get(DbException.java:143)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:118)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:91)
+	at org.h2.Driver.connect(Driver.java:74)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:684)
+	at org.h2.server.web.WebApp.test(WebApp.java:896)
+	at org.h2.server.web.WebApp.process(WebApp.java:222)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:171)
+	at org.h2.server.web.WebThread.process(WebThread.java:138)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: Незакрытое приложением соединение уничтожено сборщиком мусора
+The connection was not closed by the application and is garbage collected [90018-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	... 14 more

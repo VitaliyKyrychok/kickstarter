@@ -38,6 +38,18 @@ public class H2ProjectSqlProvider implements ProjectSqlProvider {
     }
 
     @Override
+    public String get4FetchAll() {
+        return "SELECT p.project_id AS id, " +
+                "p.name AS project_name, " +
+                "p.description AS short_description, " +
+                "p.goal AS goal, " +
+                "p.balance AS balance, " +
+                "p.deadline_date AS deadline_date " +
+                "FROM project p " +
+                "ORDER BY p.name";
+    }
+
+    @Override
     public String get4Add() {
         return "insert into project(NAME, description, goal, balance, deadline_date, demo_link, create_date, category_id) " +
                 "values(?, ?, ?, ?, ?, ?, ?, ?)";

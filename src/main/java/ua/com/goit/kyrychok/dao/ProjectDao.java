@@ -13,4 +13,6 @@ public interface ProjectDao {
     int getBalance(int projectId);
 
     List<Project> fetch(int categoryId);
+
+    List<Project> fetchAll();
 }

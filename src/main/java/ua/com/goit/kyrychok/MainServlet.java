@@ -56,6 +56,10 @@ public class MainServlet extends HttpServlet {
             req.setAttribute("category", categoryController.get(categoryId));
             req.setAttribute("projects", projectController.fetch(categoryId));
             req.setAttribute("container", "parts/category.jsp");
+        } else if (action.startsWith("/projects")) {
+            req.setAttribute("activeProjects", "active");
+            req.setAttribute("projects", projectController.fetchAll());
+            req.setAttribute("container", "parts/projects.jsp");
         } else if (action.startsWith("/project")) {
             int projectId = Integer.parseInt(req.getParameter("id"));
             req.setAttribute("activeProjects", "active");

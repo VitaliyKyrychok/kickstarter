@@ -10,5 +10,7 @@ public interface ProjectSqlProvider {
 
     String get4Fetch();
 
+    String get4FetchAll();
+
     String get4Add();
 }

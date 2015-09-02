@@ -99,6 +99,26 @@ public class DbProjectDao implements ProjectDao {
         return result;
     }
 
+    @Override
+    public List<Project> fetchAll() {
+        List<Project> result = new ArrayList<>();
+        try (Connection connection = dbDataSourceProvider.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlProvider.get4FetchAll())) {
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Project project = new Project(resultSet.getString("project_name"), resultSet.getInt("goal"), resultSet.getDate("deadline_date"));
+                project.setShortDescription(resultSet.getString("short_description"));
+                project.setId(resultSet.getInt("id"));
+                project.setBalance(resultSet.getInt("balance"));
+                result.add(project);
+            }
+            connection.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
     void add(int category_id, Project project, Connection connection) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(sqlProvider.get4Add(), new String[]{"project_id"})) {
             statement.setString(1, project.getName());

@@ -20,6 +20,10 @@ public class ProjectController {
         return projectDao.fetch(categoryId);
     }
 
+    public List<Project> fetchAll() {
+        return projectDao.fetchAll();
+    }
+
     public Project get(int id) {
         return projectDao.get(id);
     }

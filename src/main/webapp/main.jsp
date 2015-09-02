@@ -18,7 +18,7 @@
             <ul>
                 <li><a href="kickstarter" class="${activeHome}"><span>Home</span></a></li>
                 <li><a href="categories" class="${activeCategories}"><span>Categories</span></a></li>
-                <li><a href="#" class="${activeProjects}"><span>Projects</span></a></li>
+                <li><a href="projects" class="${activeProjects}"><span>Projects</span></a></li>
             </ul>
         </div>
     </div>
